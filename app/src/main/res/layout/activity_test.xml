@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestActivity">
+<!--   app:todayLabelColor="@color/design_default_color_error" 設定今天日期的顏色
+        app:selectionColor="@color/black"//設定被選到的顏色
+        app:abbreviationsBarColor="@color/design_default_color_error"
+        app:selectionLabelColor="@color/purple_500"
+        app:daysLabelsColor="#ff00ff"//設定可以選定的日期顏色
+        app:highlightedDaysLabelsColor="#fff000"
+        -->
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:todayLabelColor="@color/design_default_color_error"
+        app:selectionColor="@color/black"
+        app:abbreviationsBarColor="@color/design_default_color_error"
+        app:selectionLabelColor="@color/purple_500"
+        app:daysLabelsColor="#ff00ff"
+        app:highlightedDaysLabelsColor="#fff000"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

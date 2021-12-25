@@ -7,6 +7,7 @@ import com.applandeo.materialcalendarview.CalendarUtils;
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.CalendarWeekDay;
 import com.applandeo.materialcalendarview.DatePicker;
+import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.builders.DatePickerBuilder;
 import com.applandeo.materialcalendarview.listeners.OnSelectDateListener;
 import com.applandeo.materialcalendarview.utils.DateUtils;
@@ -24,12 +25,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements OnSelectDateListener {
-
+    private Button btnTest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        initTestBtn();
         Button openCalendarButton = (Button) findViewById(R.id.openCalendarButton);
 
 //        openCalendarButton.setOnClickListener(v -> {
@@ -63,6 +66,16 @@ public class MainActivity extends AppCompatActivity implements OnSelectDateListe
         openRangePickerDialog.setOnClickListener(v -> openRangePicker());
     }
 
+    private void initTestBtn() {
+        btnTest = findViewById(R.id.btnTest);
+        btnTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this , TestActivity.class));
+            }
+        });
+    }
+
     private void openOneDayPicker() {
         Calendar min = Calendar.getInstance();
         min.add(Calendar.MONTH, -5);
@@ -70,12 +83,22 @@ public class MainActivity extends AppCompatActivity implements OnSelectDateListe
         Calendar max = Calendar.getInstance();
         max.add(Calendar.DAY_OF_MONTH, 3);
 
+        List<EventDay> eventDays = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.set(2021,10,05);
+        EventDay eventDay = new EventDay(calendar ,R.drawable.ic_launcher_background);
+        EventDay eventDa2 = new EventDay(calendar2 ,R.drawable.ic_launcher_background);
+        eventDays.add(eventDay);
+        eventDays.add(eventDa2);
+
         DatePickerBuilder oneDayBuilder = new DatePickerBuilder(this, this)
                 .pickerType(CalendarView.ONE_DAY_PICKER)
                 .date(max)
                 .headerColor(R.color.colorPrimaryDark)
                 .headerLabelColor(R.color.currentMonthDayColor)
                 .selectionColor(R.color.daysLabelColor)
+                .events(eventDays)
                 .todayLabelColor(R.color.colorAccent)
                 .dialogButtonsColor(android.R.color.holo_green_dark)
                 .disabledDaysLabelsColor(android.R.color.holo_purple)
